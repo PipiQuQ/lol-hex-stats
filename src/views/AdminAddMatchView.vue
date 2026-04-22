@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { playerApi, type PlayerListItem } from '@/api/player'
-import { adminApi } from '@/api/index'
+import { matchApi } from '@/api/match'
 import { useRouter } from 'vue-router'
 import { getHeroNames } from '@/data/heroes'
 
@@ -133,7 +133,7 @@ async function submitMatch() {
   message.value = ''
 
   try {
-    await adminApi.addMatch({
+    await matchApi.addMatch({
       game_time: new Date(matchData.value.game_time).toISOString(),
       duration: parseDuration(matchData.value.duration_minutes),
       winner_team: matchData.value.winner_team,
